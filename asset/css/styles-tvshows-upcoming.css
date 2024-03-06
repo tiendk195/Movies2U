@@ -1,0 +1,61 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+.container {
+  max-width: 950px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+#datesDropdown {
+  width: 200px;
+  margin: 0 auto;
+  display: block;
+  padding: 8px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+#datesDropdown:focus {
+  outline: none;
+  border-color: #4caf50;
+}
+
+.tvShowContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.tv-show-card {
+  width: 250px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+.tv-show-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+.tv-show-card h3 {
+  margin-top: 10px;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.tv-show-card p {
+  margin-bottom: 5px;
+}
+/* -------- */
