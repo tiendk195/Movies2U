@@ -46,6 +46,8 @@ async function fetchData(url) {
   }
 }
 
+// Đoạn code cho phần displayNews
+
 function displayNews(news) {
   const newsList = document.getElementById("newsList");
   newsList.innerHTML = "";
@@ -73,9 +75,26 @@ function displayNews(news) {
       title.textContent = item.title;
       newsItem.appendChild(title);
 
+      // Mô tả với chức năng Show more/less
       const description = document.createElement("p");
-      description.textContent = item.description;
+      description.textContent = item.description.substring(0, 100); // Chỉ hiển thị 100 ký tự ban đầu
+      description.classList.add("description");
+
+      const showMoreButton = document.createElement("button");
+      showMoreButton.textContent = "Show more";
+      showMoreButton.classList.add("btn", "btn-link", "show-more");
+      showMoreButton.addEventListener("click", () => {
+        if (showMoreButton.textContent === "Show more") {
+          description.textContent = item.description;
+          showMoreButton.textContent = "Show less";
+        } else {
+          description.textContent = item.description.substring(0, 100);
+          showMoreButton.textContent = "Show more";
+        }
+      });
+
       newsItem.appendChild(description);
+      newsItem.appendChild(showMoreButton);
 
       const date = document.createElement("p");
       date.innerHTML = `<strong>Date:</strong> ${item.date}`;
