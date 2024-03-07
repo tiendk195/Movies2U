@@ -22,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error(error);
     }
   });
+
   window.addEventListener("scroll", () => {
     const backToTopButton = document.querySelector(".back-to-top");
     if (window.scrollY > 300) {
@@ -37,60 +38,66 @@ document.addEventListener("DOMContentLoaded", () => {
       behavior: "smooth", // Cuộn mượt
     });
   });
+
   function displayMovies(movies) {
     movieContainer.innerHTML = "";
 
-    const row = document.createElement("div");
-    row.classList.add("row");
+    // Iterate through movies and display 3 movies per row
+    for (let i = 0; i < movies.length; i += 3) {
+      const row = document.createElement("div");
+      row.classList.add("row", "mb-4");
 
-    movies.slice(0, 3).forEach((movie) => {
-      const col = document.createElement("div");
-      col.classList.add("col-md-4");
+      // Display up to 3 movies in each row
+      for (let j = i; j < i + 3 && j < movies.length; j++) {
+        const movie = movies[j];
+        const col = document.createElement("div");
+        col.classList.add("col-md-4");
 
-      const movieCard = document.createElement("div");
-      movieCard.classList.add("card", "mb-3");
+        const card = document.createElement("div");
+        card.classList.add("card", "h-100", "border", "rounded-3", "shadow");
 
-      const cardBody = document.createElement("div");
-      cardBody.classList.add("card-body");
+        const cardBody = document.createElement("div");
+        cardBody.classList.add("card-body");
 
-      const title = document.createElement("h5");
-      title.classList.add("card-title");
-      title.textContent = movie.title;
+        const title = document.createElement("h5");
+        title.classList.add("card-title", "fw-bold");
+        title.textContent = movie.title;
 
-      const year = document.createElement("p");
-      year.classList.add("card-text");
-      year.innerHTML = `<strong>Year:</strong> ${movie.year}`;
+        const year = document.createElement("p");
+        year.classList.add("card-text");
+        year.innerHTML = `<strong>Year:</strong> ${movie.year}`;
 
-      const timeline = document.createElement("p");
-      timeline.classList.add("card-text");
-      timeline.innerHTML = `<strong>Timeline:</strong> ${movie.timeline}`;
+        const timeline = document.createElement("p");
+        timeline.classList.add("card-text");
+        timeline.innerHTML = `<strong>Timeline:</strong> ${movie.timeline}`;
 
-      const description = document.createElement("p");
-      description.classList.add("card-text");
-      description.innerHTML = `<strong>Description:</strong> ${movie.description}`;
+        const description = document.createElement("p");
+        description.classList.add("card-text");
+        description.innerHTML = `<strong>Description:</strong> ${movie.description}`;
 
-      const imdbRating = document.createElement("p");
-      imdbRating.classList.add("card-text");
-      imdbRating.innerHTML = `<strong>Rating:</strong> ${movie.imdbRating}`;
+        const imdbRating = document.createElement("p");
+        imdbRating.classList.add("card-text");
+        imdbRating.innerHTML = `<strong>IMDb Rating:</strong> ${movie.imdbRating}`;
 
-      const posterImage = document.createElement("img");
-      posterImage.classList.add("card-img-top");
-      posterImage.src = movie.posterImage;
-      posterImage.alt = movie.title;
+        const posterImage = document.createElement("img");
+        posterImage.classList.add("card-img-top");
+        posterImage.src = movie.posterImage;
+        posterImage.alt = movie.title;
 
-      cardBody.appendChild(title);
-      cardBody.appendChild(year);
-      cardBody.appendChild(timeline);
-      cardBody.appendChild(description);
-      cardBody.appendChild(imdbRating);
+        cardBody.appendChild(title);
+        cardBody.appendChild(year);
+        cardBody.appendChild(timeline);
+        cardBody.appendChild(description);
+        cardBody.appendChild(imdbRating);
 
-      movieCard.appendChild(posterImage);
-      movieCard.appendChild(cardBody);
+        card.appendChild(posterImage);
+        card.appendChild(cardBody);
 
-      col.appendChild(movieCard);
-      row.appendChild(col);
-    });
+        col.appendChild(card);
+        row.appendChild(col);
+      }
 
-    movieContainer.appendChild(row);
+      movieContainer.appendChild(row);
+    }
   }
 });
