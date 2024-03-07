@@ -17,6 +17,17 @@ document
   .addEventListener("click", () => {
     fetchData(celebrityUrl);
   });
+document.oncontextmenu = () => {
+  return false;
+};
+document.onkeydown = (e) => {
+  if (e.key == "F12") {
+    return false;
+  }
+  if (e.ctrlKey && e.key == "u") {
+    return false;
+  }
+};
 
 window.addEventListener("scroll", () => {
   const backToTopButton = document.querySelector(".back-to-top");

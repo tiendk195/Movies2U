@@ -9,6 +9,17 @@ async function fetchData() {
       "X-RapidAPI-Host": "moviesverse1.p.rapidapi.com",
     },
   };
+  document.oncontextmenu = () => {
+    return false;
+  };
+  document.onkeydown = (e) => {
+    if (e.key == "F12") {
+      return false;
+    }
+    if (e.ctrlKey && e.key == "u") {
+      return false;
+    }
+  };
 
   window.addEventListener("scroll", () => {
     const backToTopButton = document.querySelector(".back-to-top");

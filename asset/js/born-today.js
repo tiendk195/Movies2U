@@ -1,4 +1,3 @@
-// born-today.js
 document.getElementById("getDataBtn").addEventListener("click", fetchData);
 
 async function fetchData() {
@@ -19,6 +18,17 @@ async function fetchData() {
     console.error(error);
   }
 }
+document.oncontextmenu = () => {
+  return false;
+};
+document.onkeydown = (e) => {
+  if (e.key == "F12") {
+    return false;
+  }
+  if (e.ctrlKey && e.key == "u") {
+    return false;
+  }
+};
 
 window.addEventListener("scroll", () => {
   const backToTopButton = document.querySelector(".back-to-top");
@@ -32,18 +42,30 @@ window.addEventListener("scroll", () => {
 document.querySelector(".back-to-top").addEventListener("click", () => {
   window.scrollTo({
     top: 0,
-    behavior: "smooth", // Cuộn mượt
+    behavior: "smooth",
   });
 });
+
+let currentPage = 1;
+const itemsPerPage = 12;
+let bornTodayData = [];
+
 function displayData(data) {
+  bornTodayData = data.list;
+  displayPage(currentPage);
+}
+
+function displayPage(page) {
+  const startIndex = (page - 1) * itemsPerPage;
+  const endIndex = page * itemsPerPage;
+  const dataToShow = bornTodayData.slice(startIndex, endIndex);
+
   const dataContainer = document.getElementById("dataContainer");
   dataContainer.innerHTML = "";
 
   let row = null;
-  let count = 0;
-
-  data.list.forEach((item, index) => {
-    if (count === 0 || count % 2 === 0) {
+  dataToShow.forEach((item, index) => {
+    if (index % 2 === 0) {
       row = document.createElement("div");
       row.classList.add("row", "mb-3");
       dataContainer.appendChild(row);
@@ -56,9 +78,26 @@ function displayData(data) {
 
     col.appendChild(card);
     row.appendChild(col);
-
-    count++;
   });
+
+  renderPaginationButtons();
+}
+
+function renderPaginationButtons() {
+  const totalPages = Math.ceil(bornTodayData.length / itemsPerPage);
+  const paginationContainer = document.getElementById("pagination");
+  paginationContainer.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const button = document.createElement("button");
+    button.textContent = i;
+    button.classList.add("btn", "btn-secondary", "mr-2");
+    button.addEventListener("click", () => {
+      currentPage = i;
+      displayPage(currentPage);
+    });
+    paginationContainer.appendChild(button);
+  }
 }
 
 function createCard(item) {
@@ -89,7 +128,7 @@ function createCard(item) {
 
   const infoText = document.createElement("p");
   infoText.classList.add("card-text");
-  infoText.textContent = item.info.substring(0, 400); // Hiển thị chỉ 100 ký tự ban đầu
+  infoText.textContent = item.info.substring(0, 400);
 
   const showMoreButton = document.createElement("button");
   showMoreButton.classList.add("btn", "btn-link");
