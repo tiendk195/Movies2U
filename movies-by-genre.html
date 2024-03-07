@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movies by Genre</title>
+    <link rel="stylesheet" href="/asset/css/movies-by-genre.css" />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="container mt-5">
+      <a href="#" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+      </a>
+      <h1 class="text-center my-4">Movies by Genre</h1>
+      <p class="text-center mb-4">Hãy chọn thể loại phim bạn muốn</p>
+      <div class="d-flex justify-content-center">
+        <select id="genreDropdown" class="form-control w-50">
+          <option value="action">Action</option>
+          <option value="adventure">Adventure</option>
+          <option value="animation">Animation</option>
+          <option value="biography">Biography</option>
+          <option value="comedy">Comedy</option>
+          <option value="documentary">Documentary</option>
+          <option value="drama">Drama</option>
+          <option value="family">Family</option>
+          <option value="fantasy">Fantasy</option>
+          <option value="film-noir">Film-Noir</option>
+          <option value="history">History</option>
+          <option value="horror">Horror</option>
+          <option value="music">Music</option>
+          <option value="musical">Musical</option>
+          <option value="mystery">Mystery</option>
+          <option value="romance">Romance</option>
+          <option value="sci-fi">Sci-Fi</option>
+          <option value="sport">Sport</option>
+          <option value="thriller">Thriller</option>
+          <option value="war">War</option>
+          <option value="western">Western</option>
+        </select>
+      </div>
+      <div class="mt-3" id="movieContainer"></div>
+      <a href="index.html" class="btn-a">
+        <i class="fas fa-calendar-alt"></i>Back to Categories
+      </a>
+    </div>
+
+    <script src="/asset/js/movies-by-genre.js"></script>
+  </body>
+</html>

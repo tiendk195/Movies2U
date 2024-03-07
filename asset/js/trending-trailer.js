@@ -10,6 +10,23 @@ async function fetchData() {
     },
   };
 
+  window.addEventListener("scroll", () => {
+    const backToTopButton = document.querySelector(".back-to-top");
+    if (window.scrollY > 300) {
+      // Scroll xuống một khoảng nào đó
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
+  });
+
+  // Xử lý khi click vào icon back to top
+  document.querySelector(".back-to-top").addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Cuộn mượt
+    });
+  });
   try {
     const response = await fetch(url, options);
     const data = await response.json();
@@ -18,23 +35,7 @@ async function fetchData() {
     console.error(error);
   }
 }
-window.addEventListener("scroll", () => {
-  const backToTopButton = document.querySelector(".back-to-top");
-  if (window.scrollY > 300) {
-    // Scroll xuống một khoảng nào đó
-    backToTopButton.style.display = "block";
-  } else {
-    backToTopButton.style.display = "none";
-  }
-});
 
-// Xử lý khi click vào icon back to top
-document.querySelector(".back-to-top").addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth", // Cuộn mượt
-  });
-});
 function displayTrailers(trailers) {
   const trailersContainer = document.getElementById("trailersContainer");
   trailersContainer.innerHTML = "";
