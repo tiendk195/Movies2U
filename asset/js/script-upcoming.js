@@ -72,15 +72,15 @@ document.addEventListener("DOMContentLoaded", async () => {
       const title = document.createElement("h3");
       title.textContent = movie.title;
 
-      const categories = document.createElement("p");
-      categories.innerHTML = `<strong>Categories:</strong> ${movie.categories.join(
-        ", "
-      )}`;
+      const categories = createTruncatedElement(
+        "Categories",
+        movie.categories.join(", ")
+      );
 
-      const starring = document.createElement("p");
-      starring.innerHTML = `<strong>Starring in:</strong> ${movie.staring.join(
-        ", "
-      )}`;
+      const starring = createTruncatedElement(
+        "Starring in",
+        movie.staring.join(", ")
+      );
 
       movieCard.appendChild(image);
       movieCard.appendChild(title);
@@ -89,6 +89,39 @@ document.addEventListener("DOMContentLoaded", async () => {
 
       movieContainer.appendChild(movieCard);
     });
+  }
+
+  function createTruncatedElement(label, text) {
+    const container = document.createElement("div");
+    container.classList.add("truncated-container");
+
+    const labelElement = document.createElement("p");
+    labelElement.innerHTML = `<strong>${label}:</strong> `;
+    container.appendChild(labelElement);
+
+    const textElement = document.createElement("p");
+    textElement.classList.add("truncated-text");
+    textElement.textContent = text.substring(0, 100); // Chỉ hiển thị 100 ký tự ban đầu
+
+    const showMoreButton = document.createElement("span");
+    showMoreButton.classList.add("show-more");
+    showMoreButton.textContent = "Show more";
+    showMoreButton.style.color = "blue"; // Màu chữ
+    showMoreButton.style.cursor = "pointer"; // Biểu tượng "pointer"
+    showMoreButton.addEventListener("click", () => {
+      if (showMoreButton.textContent === "Show more") {
+        textElement.textContent = text;
+        showMoreButton.textContent = "Show less";
+      } else {
+        textElement.textContent = text.substring(0, 100);
+        showMoreButton.textContent = "Show more";
+      }
+    });
+
+    container.appendChild(textElement);
+    container.appendChild(showMoreButton);
+
+    return container;
   }
 
   populateDropdownList();

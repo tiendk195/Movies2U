@@ -62,35 +62,48 @@ document.addEventListener("DOMContentLoaded", async () => {
     const tvShowContainer = document.getElementById("tvShowContainer");
     tvShowContainer.innerHTML = "";
 
-    tvShows.forEach((tvShow) => {
-      const tvShowCard = document.createElement("div");
-      tvShowCard.classList.add("tv-show-card");
+    for (let i = 0; i < tvShows.length; i += 2) {
+      const tvShowRow = document.createElement("div");
+      tvShowRow.classList.add("tv-show-row", "row", "mb-3");
 
-      const image = document.createElement("img");
-      image.classList.add("tv-show-image");
-      image.src = tvShow.image;
-      image.alt = tvShow.title;
+      for (let j = i; j < i + 2 && j < tvShows.length; j++) {
+        const tvShow = tvShows[j];
 
-      const title = document.createElement("h3");
-      title.textContent = tvShow.title;
+        const tvShowCol = document.createElement("div");
+        tvShowCol.classList.add("col-md-6");
 
-      const categories = document.createElement("p");
-      categories.innerHTML = `<strong>Categories:</strong> ${tvShow.categories.join(
-        ", "
-      )}`;
+        const tvShowCard = document.createElement("div");
+        tvShowCard.classList.add("tv-show-card");
 
-      const starring = document.createElement("p");
-      starring.innerHTML = `<strong>Starring in:</strong> ${tvShow.staring.join(
-        ", "
-      )}`;
+        const image = document.createElement("img");
+        image.classList.add("tv-show-image");
+        image.src = tvShow.image;
+        image.alt = tvShow.title;
 
-      tvShowCard.appendChild(image);
-      tvShowCard.appendChild(title);
-      tvShowCard.appendChild(categories);
-      tvShowCard.appendChild(starring);
+        const title = document.createElement("h3");
+        title.textContent = tvShow.title;
 
-      tvShowContainer.appendChild(tvShowCard);
-    });
+        const categories = document.createElement("p");
+        categories.innerHTML = `<strong>Categories:</strong> ${tvShow.categories.join(
+          ", "
+        )}`;
+
+        const starring = document.createElement("p");
+        starring.innerHTML = `<strong>Starring in:</strong> ${tvShow.staring.join(
+          ", "
+        )}`;
+
+        tvShowCard.appendChild(image);
+        tvShowCard.appendChild(title);
+        tvShowCard.appendChild(categories);
+        tvShowCard.appendChild(starring);
+
+        tvShowCol.appendChild(tvShowCard);
+        tvShowRow.appendChild(tvShowCol);
+      }
+
+      tvShowContainer.appendChild(tvShowRow);
+    }
   }
 
   populateDropdownList();

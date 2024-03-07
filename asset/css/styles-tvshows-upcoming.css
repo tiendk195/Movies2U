@@ -4,6 +4,7 @@ body {
   margin: 0;
   padding: 0;
 }
+
 .container {
   max-width: 950px;
   margin: 50px auto;
@@ -12,6 +13,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
 }
+
 #datesDropdown {
   width: 200px;
   margin: 0 auto;
@@ -23,12 +25,12 @@ body {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 #datesDropdown:focus {
   outline: none;
   border-color: #4caf50;
 }
-
-.tvShowContainer {
+.tv-show-container {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -58,7 +60,7 @@ body {
 .tv-show-card p {
   margin-bottom: 5px;
 }
-/* -------- */
+
 .back-to-top {
   position: fixed;
   bottom: 20px;
