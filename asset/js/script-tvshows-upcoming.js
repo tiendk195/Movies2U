@@ -18,6 +18,24 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  window.addEventListener("scroll", () => {
+    const backToTopButton = document.querySelector(".back-to-top");
+    if (window.scrollY > 300) {
+      // Scroll xuống một khoảng nào đó
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
+  });
+
+  // Xử lý khi click vào icon back to top
+  document.querySelector(".back-to-top").addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Cuộn mượt
+    });
+  });
+
   async function populateDropdownList() {
     const data = await fetchData();
     const dates = data.movies.map((tvShow) => tvShow.date);

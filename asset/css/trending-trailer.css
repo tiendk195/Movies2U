@@ -1,0 +1,95 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  max-width: 950px;
+  margin: 50px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.trailer {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  text-align: center; /* Canh giữa nội dung */
+}
+
+.trailer img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 10px; /* Khoảng cách giữa ảnh và tiêu đề */
+}
+
+.trailer h3 {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.trailer p {
+  margin-bottom: 5px;
+}
+.btn-watch-now-trailer {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-watch-now-.btn-watch-now-trailer {
+  background-color: #0056b3;
+}
+
+.btn-watch-now {
+  display: inline-block;
+  margin: 0 auto;
+  padding: 15px 25px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+@media (min-width: 768px) {
+  /* Thiết lập kích thước cột cho mỗi trailer */
+  .trailer {
+    flex: 0 0 calc(33.333% - 20px); /* 3 cột, 20px là margin giữa các cột */
+    max-width: calc(33.333% - 20px);
+    margin-right: 20px; /* Khoảng cách giữa các trailer */
+  }
+
+  /* Loại bỏ margin phải của trailer cuối cùng trong mỗi hàng */
+  .trailer:last-child {
+    margin-right: 0;
+  }
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none; /* Ẩn mặc định */
+  cursor: pointer;
+  font-size: 24px;
+  background-color: #007bff;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  line-height: 40px;
+}

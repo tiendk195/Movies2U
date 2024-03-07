@@ -93,3 +93,40 @@ li img {
 li p {
   margin: 5px 0;
 }
+/* Thêm đường viền giữa các thẻ li và div */
+.news-item {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+/* Tăng kích thước hình ảnh */
+.news-item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+}
+
+/* Thêm phần cách giữa các thẻ li và div */
+.news-item:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none; /* Ẩn mặc định */
+  cursor: pointer;
+  font-size: 24px;
+  background-color: #007bff;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  line-height: 40px;
+}

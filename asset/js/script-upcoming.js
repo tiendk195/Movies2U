@@ -18,6 +18,22 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   }
 
+  window.addEventListener("scroll", () => {
+    const backToTopButton = document.querySelector(".back-to-top");
+    if (window.scrollY > 300) {
+      backToTopButton.style.display = "block";
+    } else {
+      backToTopButton.style.display = "none";
+    }
+  });
+
+  document.querySelector(".back-to-top").addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth", // Cuộn mượt
+    });
+  });
+
   async function populateDropdownList() {
     const data = await fetchData();
     const dates = data.movies.map((movie) => movie.date);

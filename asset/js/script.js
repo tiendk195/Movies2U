@@ -18,6 +18,24 @@ document
     fetchData(celebrityUrl);
   });
 
+window.addEventListener("scroll", () => {
+  const backToTopButton = document.querySelector(".back-to-top");
+  if (window.scrollY > 300) {
+    // Scroll xuống một khoảng nào đó
+    backToTopButton.style.display = "block";
+  } else {
+    backToTopButton.style.display = "none";
+  }
+});
+
+// Xử lý khi click vào icon back to top
+document.querySelector(".back-to-top").addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth", // Cuộn mượt
+  });
+});
+
 async function fetchData(url) {
   try {
     const response = await fetch(url, options);
@@ -32,42 +50,56 @@ function displayNews(news) {
   const newsList = document.getElementById("newsList");
   newsList.innerHTML = "";
 
-  news.forEach((item) => {
-    const newsItem = document.createElement("li");
-    newsItem.classList.add("news-item");
+  // Tạo div mới cho mỗi cặp tin tức
+  for (let i = 0; i < news.length; i += 2) {
+    const row = document.createElement("div");
+    row.classList.add("row");
 
-    const image = document.createElement("img");
-    image.src = item.image;
-    image.classList.add("mb-3");
-    newsItem.appendChild(image);
+    // Tạo div con cho mỗi tin tức
+    for (let j = i; j < Math.min(i + 2, news.length); j++) {
+      const item = news[j];
+      const col = document.createElement("div");
+      col.classList.add("col-md-6", "mb-3");
 
-    const title = document.createElement("h2");
-    title.textContent = item.title;
-    newsItem.appendChild(title);
+      const newsItem = document.createElement("div");
+      newsItem.classList.add("news-item");
 
-    const description = document.createElement("p");
-    description.textContent = item.description;
-    newsItem.appendChild(description);
+      const image = document.createElement("img");
+      image.src = item.image;
+      image.classList.add("mb-3");
+      newsItem.appendChild(image);
 
-    const date = document.createElement("p");
-    date.textContent = `Date: ${item.date}`;
-    newsItem.appendChild(date);
+      const title = document.createElement("h2");
+      title.textContent = item.title;
+      newsItem.appendChild(title);
 
-    const writer = document.createElement("p");
-    writer.textContent = `Writer: ${item.writer}`;
-    newsItem.appendChild(writer);
+      const description = document.createElement("p");
+      description.textContent = item.description;
+      newsItem.appendChild(description);
 
-    const source = document.createElement("p");
-    source.textContent = `Source: ${item.source}`;
-    newsItem.appendChild(source);
+      const date = document.createElement("p");
+      date.innerHTML = `<strong>Date:</strong> ${item.date}`;
+      newsItem.appendChild(date);
 
-    const link = document.createElement("a");
-    link.href = item.link;
-    link.textContent = "Read More";
-    link.classList.add("btn", "btn-primary", "mt-3");
-    link.target = "_blank";
-    newsItem.appendChild(link);
+      const writer = document.createElement("p");
+      writer.innerHTML = `<strong>Writer:</strong> ${item.writer}`;
+      newsItem.appendChild(writer);
 
-    newsList.appendChild(newsItem);
-  });
+      const source = document.createElement("p");
+      source.innerHTML = `<strong>Source:</strong> ${item.source}`;
+      newsItem.appendChild(source);
+
+      const link = document.createElement("a");
+      link.href = item.link;
+      link.textContent = "Read More";
+      link.classList.add("btn", "btn-primary", "mt-3");
+      link.target = "_blank";
+      newsItem.appendChild(link);
+
+      col.appendChild(newsItem);
+      row.appendChild(col);
+    }
+
+    newsList.appendChild(row);
+  }
 }

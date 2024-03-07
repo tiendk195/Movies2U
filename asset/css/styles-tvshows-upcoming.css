@@ -59,3 +59,19 @@ body {
   margin-bottom: 5px;
 }
 /* -------- */
+.back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none; /* Ẩn mặc định */
+  cursor: pointer;
+  font-size: 24px;
+  background-color: #007bff;
+  color: #fff;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+  line-height: 40px;
+}
