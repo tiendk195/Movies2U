@@ -13,22 +13,32 @@ async function fetchData() {
   try {
     const response = await fetch(url, options);
     const data = await response.json();
-    displayData(data);
+
+    if (data && data.list && data.list.length > 0) {
+      displayData(data);
+    } else {
+      const today = new Date();
+      const dayOfMonth = today.getDate();
+      const dataContainer = document.getElementById("dataContainer");
+      dataContainer.innerHTML = `Oops, Hôm nay không có nhân vật nào có ngày sinh nhật là ngày ${dayOfMonth}, hãy quay trở lại mai nhé.`;
+      const paginationContainer = document.getElementById("pagination");
+      paginationContainer.innerHTML = "";
+    }
   } catch (error) {
     console.error(error);
   }
 }
-document.oncontextmenu = () => {
-  return false;
-};
-document.onkeydown = (e) => {
-  if (e.key == "F12") {
-    return false;
-  }
-  if (e.ctrlKey && e.key == "u") {
-    return false;
-  }
-};
+// document.oncontextmenu = () => {
+//   return false;
+// };
+// document.onkeydown = (e) => {
+//   if (e.key == "F12") {
+//     return false;
+//   }
+//   if (e.ctrlKey && e.key == "u") {
+//     return false;
+//   }
+// };
 
 window.addEventListener("scroll", () => {
   const backToTopButton = document.querySelector(".back-to-top");
